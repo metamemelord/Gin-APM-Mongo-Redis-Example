@@ -7,6 +7,8 @@ RUN go build -o users
 FROM alpine
 WORKDIR /app
 COPY --from=builder /build/users .
+RUN mkdir configuration
+COPY ./configuration/release-config.yml ./configuration
 ENV app_env=release
 ENV GIN_MODE=release
 CMD ["./users"]
