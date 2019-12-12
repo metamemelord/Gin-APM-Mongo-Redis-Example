@@ -1,0 +1,9 @@
+database:
+  hosts:
+    - mongo:27017
+  connection_string: mongodb://localhost:27017
+  database: test
+  collection: users
+cache:
+  address: localhost:6379
+port: 3000

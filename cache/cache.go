@@ -2,16 +2,16 @@ package cache
 
 import (
 	"context"
+	"github.com/metamemelord/Gin-APM-Mongo-Redis-Example/configuration"
 	"time"
 
 	"github.com/go-redis/redis/v7"
+	"go.uber.org/fx"
 )
 
-type Config struct {
-	Host     string
-	Password string
-	DB       int
-}
+var Module = fx.Options(
+	fx.Provide(NewClient),
+)
 
 type Cache interface {
 	Get(context.Context, string) ([]byte, error)
@@ -22,15 +22,15 @@ type cacheClient struct {
 	c *redis.Client
 }
 
-func NewClient(config *Config) (*redis.Client, error) {
+func NewClient(config *configuration.Configuration) (Cache, error) {
 	client := redis.NewClient(&redis.Options{
-		Addr:     config.Host,
-		Password: config.Password,
-		DB:       config.DB,
+		Addr:     config.Cache.Address,
+		Password: config.Cache.Password,
+		DB:       config.Cache.DB,
 	})
 
 	_, err := client.Ping().Result()
-	return client, err
+	return &cacheClient{c: client}, err
 }
 
 func (c *cacheClient) Get(ctx context.Context, key string) ([]byte, error) {

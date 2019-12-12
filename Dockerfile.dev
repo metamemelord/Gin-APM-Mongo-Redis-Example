@@ -1,0 +1,7 @@
+FROM golang:alpine
+WORKDIR /app
+COPY . .
+RUN apk add git build-base gcc
+RUN go build
+ENV app_env=DEV
+CMD ["go", "run", "main.go"]
