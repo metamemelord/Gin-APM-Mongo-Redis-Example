@@ -1,0 +1,12 @@
+version: "3.4"
+services:
+  mongo:
+    image: mongo
+    restart: always
+  redis:
+    image: redis
+    restart: always
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.release
