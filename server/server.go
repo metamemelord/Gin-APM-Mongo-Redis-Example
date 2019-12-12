@@ -3,9 +3,10 @@ package server
 import (
 	"context"
 	"log"
-	"github.com/metamemelord/Gin-APM-Mongo-Redis-Example/configuration"
-	"github.com/metamemelord/Gin-APM-Mongo-Redis-Example/handlers"
 	"strconv"
+
+	"github.com/metamemelord/Gin-APM-Mongo-Redis-Example/configuration"
+	"github.com/metamemelord/Gin-APM-Mongo-Redis-Example/server/handlers"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/fx"

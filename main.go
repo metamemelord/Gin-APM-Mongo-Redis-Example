@@ -1,10 +1,10 @@
 package main
 
 import (
-	"go.uber.org/fx"
 	"github.com/metamemelord/Gin-APM-Mongo-Redis-Example/configuration"
-	"github.com/metamemelord/Gin-APM-Mongo-Redis-Example/server"
 	"github.com/metamemelord/Gin-APM-Mongo-Redis-Example/db"
+	"github.com/metamemelord/Gin-APM-Mongo-Redis-Example/server"
+	"go.uber.org/fx"
 )
 
 func main() {

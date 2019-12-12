@@ -3,9 +3,9 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/metamemelord/Gin-APM-Mongo-Redis-Example/db"
 	"log"
 	"net/http"
-	"github.com/metamemelord/Gin-APM-Mongo-Redis-Example/db"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/fx"
