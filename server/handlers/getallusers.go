@@ -28,16 +28,18 @@ func getAllUsers(database db.DB) func(*gin.Context) {
 			users, err := database.Find(g.Request.Context())
 			if err != nil {
 				log.Println("ERROR:", err)
-				Respond(g, http.StatusCreated, nil, []error{err})
+				Respond(g, http.StatusCreated, nil, err)
+				return
 			}
-			Respond(g, http.StatusCreated, users, nil)
+			Respond(g, http.StatusCreated, users)
 		} else {
 			users, err := database.FindByFilters(g.Request.Context(), filters)
 			if err != nil {
 				log.Println("ERROR:", err)
-				Respond(g, http.StatusCreated, nil, []error{err})
+				Respond(g, http.StatusCreated, nil, err)
+				return
 			}
-			Respond(g, http.StatusCreated, users, nil)
+			Respond(g, http.StatusCreated, users)
 		}
 
 	}

@@ -25,23 +25,23 @@ func getAddUserHandler(database db.DB) func(*gin.Context) {
 		err := json.NewDecoder(g.Request.Body).Decode(user)
 		if err != nil {
 			log.Println(err)
-			Respond(g, http.StatusBadRequest, nil, []error{err})
+			Respond(g, http.StatusBadRequest, nil, err)
 			return
 		}
 
 		errs := validateUser(user)
 		if len(errs) != 0 {
-			Respond(g, http.StatusPreconditionFailed, nil, errs)
+			Respond(g, http.StatusPreconditionFailed, nil, errs...)
 			return
 		}
 		user.Active = true
 		user, err = database.AddUser(g.Request.Context(), user)
 		if err != nil {
 			log.Println(err)
-			Respond(g, http.StatusBadRequest, nil, []error{err})
+			Respond(g, http.StatusBadRequest, nil, err)
 			return
 		}
-		Respond(g, http.StatusCreated, user, nil)
+		Respond(g, http.StatusCreated, user)
 	}
 }
 
